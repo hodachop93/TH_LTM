@@ -25,7 +25,6 @@ public class ServerUDP {
 			String sentence = new String(receivePacket.getData()).substring(0, receivePacket.getLength());
 			
 			int port = receivePacket.getPort();
-			Thread.sleep(20*1000);
 			String dao = "";
 			for (int i = sentence.length() - 1; i >= 0; i--) {
 				dao += sentence.charAt(i) + "";
