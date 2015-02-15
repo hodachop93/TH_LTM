@@ -12,18 +12,37 @@ public class ClientUDP {
 		String sentence = input.nextLine();
 		sendData = sentence.getBytes();
 		DatagramPacket sendPacket = new DatagramPacket(sendData,
-				sendData.length, IPAddress, 8876);
+				sentence.length(), IPAddress, 8876);
 		clientSocket.send(sendPacket);
 		DatagramPacket receivePacket = new DatagramPacket(receiveData,
 				receiveData.length);
+		// Nhan goi gui ve dau tien
 		clientSocket.receive(receivePacket);
-		String modifiedsentence = new String(receivePacket.getData()).substring(0, receivePacket.getLength());
-		if (modifiedsentence.startsWith("OK")) {
-			System.out.println("Chuoi doi xung: "+sentence);
-		} else {
+		String receivedSentence = new String(receivePacket.getData());
+		System.out.println("Xau chuoi HOA : " + receivedSentence);
+		
+		// Nhan goi gui ve thu 2
+		
+		clientSocket.receive(receivePacket);
+		receivedSentence = new String(receivePacket.getData());
+		System.out.println("Xau chuoi THUONG : " + receivedSentence);
 
-		}
-		System.out.println("From Server:" + modifiedsentence);
+		// Nhan goi gui ve thu 3
+		
+		clientSocket.receive(receivePacket);
+		receivedSentence = new String(receivePacket.getData());
+		System.out.println("Xau chuoi VUA HOA VUA THUONG : " + receivedSentence);
+
+		//// Nhan goi gui ve thu 4
+		clientSocket.receive(receivePacket);
+		receivedSentence = new String(receivePacket.getData());
+		String receivedSentence1 = new String(receivePacket.getData());
+		
+		System.out.println("So tu trong xau da gui : " + receivedSentence1);
+		System.out.println(receivePacket.getLength());
+
+		//int a = 5 , b= 10;
+		//System.out.println("" + a+ "+" + b);
 		clientSocket.close();
 	}
 }

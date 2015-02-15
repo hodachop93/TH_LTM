@@ -1,5 +1,4 @@
 package ngay1.bai3;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataInputStream;
@@ -62,11 +61,11 @@ public class ChatRoom {
 		frame.setVisible(true);
 		
 		try{
-			soc = new Socket("localhost", 6000);
+			soc = new Socket("localhost", 5000);
 			this.dis = new DataInputStream(soc.getInputStream());
 			this.dos = new DataOutputStream(soc.getOutputStream());
 			new ThreadedHandler(this).start();
-			this.dos.writeUTF("Joined,"+this.NickName);
+			this.dos.writeUTF("Joint,"+this.NickName);
 		}catch(IOException e){this.frame.dispose();}
 	}
 	public class SendActionListener implements ActionListener{

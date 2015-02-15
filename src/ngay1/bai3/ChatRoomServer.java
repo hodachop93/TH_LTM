@@ -1,5 +1,6 @@
 package ngay1.bai3;
 
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.util.Vector;
 
 
 public class ChatRoomServer {
-	public final static int daytimePort = 6000;
+	public final static int daytimePort = 5000;
 	public Vector<ThreadedHandler> cls=new Vector<ThreadedHandler>();
 	
 	public ChatRoomServer(){
