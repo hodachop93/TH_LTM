@@ -21,6 +21,7 @@ class ThreadXuLy extends Thread{
 	@Override
 	public void run(){
 		try{
+			Thread.sleep(20000);
 			DataInputStream din = new DataInputStream(sc.getInputStream());
 			DataOutputStream dout = new DataOutputStream(sc.getOutputStream());
 			String input = din.readUTF();

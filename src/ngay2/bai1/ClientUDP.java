@@ -8,7 +8,7 @@ public class ClientUDP {
 		InetAddress IPAddress = InetAddress.getByName("localhost");
 		byte[] sendData = new byte[1024];
 		byte[] receiveData = new byte[1024];
-
+		System.out.println("Nhap chuoi: ");
 		String sentence = input.nextLine();
 		sendData = sentence.getBytes();
 		DatagramPacket sendPacket = new DatagramPacket(sendData,
@@ -36,13 +36,9 @@ public class ClientUDP {
 		//// Nhan goi gui ve thu 4
 		clientSocket.receive(receivePacket);
 		receivedSentence = new String(receivePacket.getData());
-		String receivedSentence1 = new String(receivePacket.getData());
+		String receivedSentence1 = new String(receivePacket.getData()).substring(0, receivePacket.getLength());
 		
 		System.out.println("So tu trong xau da gui : " + receivedSentence1);
-		System.out.println(receivePacket.getLength());
-
-		//int a = 5 , b= 10;
-		//System.out.println("" + a+ "+" + b);
-		clientSocket.close();
+		
 	}
 }

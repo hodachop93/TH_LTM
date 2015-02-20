@@ -47,7 +47,7 @@ public class ChatRoomServer {
 			}catch(IOException e){}
 		}
 		public void run(){
-			String ch="";
+			String ch;
 			try{
 				ch = dis.readUTF();
 				String cmd=ch.substring(0, ch.indexOf(","));
