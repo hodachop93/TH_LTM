@@ -33,10 +33,10 @@ public class ChatRoomServer {
 	}
 	public class ThreadedHandler extends Thread{
 		ChatRoomServer crsv;
-		public Socket incoming;
-		public DataInputStream dis;
-		public DataOutputStream dos;
-		public String name;
+		private Socket incoming;
+		private DataInputStream dis;
+		private  DataOutputStream dos;
+		private String name;
 		public ThreadedHandler(ChatRoomServer crsv, Socket i)
 		{
 			this.crsv=crsv;

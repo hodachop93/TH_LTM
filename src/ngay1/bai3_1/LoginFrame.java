@@ -6,7 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class LoginFrame extends JFrame implements ActionListener{
-	
+	JTextField txtName;
+	JLabel txtError;
 	public LoginFrame(){
 		super("Login");
 		setBounds(100, 100, 400, 400);
@@ -14,14 +15,16 @@ public class LoginFrame extends JFrame implements ActionListener{
 		setLayout(new GridLayout(3,2));
 		JLabel lblName = new JLabel("Name: ");
 		add(lblName);
-		JTextField txtName = new JTextField();
+		txtName = new JTextField();
 		add(txtName);
+		txtName.addActionListener(this);
 		add(new JLabel());
 		JButton btnLogin = new JButton("Login");
 		add(btnLogin);
+		btnLogin.addActionListener(this);
 		JLabel txtMsg = new JLabel("Message");
 		add(txtMsg);
-		JLabel txtError = new JLabel();
+		txtError = new JLabel();
 		add(txtError);
 		setVisible(true);
 	}
@@ -33,7 +36,13 @@ public class LoginFrame extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (!txtName.getText().equals("")){
+			new ChatRoomClient(txtName.getText());
+			this.dispose();
+		}
+		else{
+			txtError.setText("Please: Enter your name!!!");
+		}
 	}
 
 }
