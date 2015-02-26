@@ -1,4 +1,4 @@
-package ngay1.bai3_1;
+package ngay1.bai3_Minh;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Area;
@@ -48,7 +48,7 @@ public class ChatRoomClient extends JFrame implements ActionListener{
 		this.add(AreaJoiners);
 		
 		btnSend = new JButton("Send");
-		btnSend.setBounds(320, 325, 50, 25);
+		btnSend.setBounds(320, 325, 100, 25);
 		this.add(btnSend);
 		btnSend.addActionListener(this);
 		this.setVisible(true);
@@ -69,7 +69,7 @@ public class ChatRoomClient extends JFrame implements ActionListener{
 				dos.writeUTF("Msg," + msg.getText());
 			}
 			catch (Exception ex){
-				System.out.println(ex.getMessage());
+				System.err.println(ex.getMessage());
 				this.dispose();
 				new LoginFrame();
 			}
@@ -93,6 +93,8 @@ public class ChatRoomClient extends JFrame implements ActionListener{
 					String message = xauNhan.substring(xauNhan.indexOf(",")+1);
 					if (dinhDanh.equals("Msg"))
 						AreaChat.setText(AreaChat.getText() + "\n" + message);
+					else if (dinhDanh.equals("Joined"))
+						AreaJoiners.setText(message);
 					else
 						soc.close();
 				}

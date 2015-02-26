@@ -1,4 +1,4 @@
-package ngay1.bai3_1;
+package ngay1.bai3_Minh;
 
 import javax.swing.*;
 

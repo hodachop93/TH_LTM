@@ -1,4 +1,4 @@
-package ngay1.bai3_1;
+package ngay1.bai3_Minh;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -16,9 +16,13 @@ public class ChatRoomServer {
 				new ThreadHandler(this, connection).start();
 			}
 		} catch (IOException e) {
+			System.out.println("loi tai chat room server");
 			System.out.println(e.getMessage());
 		}
 		
+	}
+	public static void main(String[] args){
+		new ChatRoomServer();
 	}
 	public class ThreadHandler extends Thread{
 		ChatRoomServer crsv;
@@ -34,6 +38,7 @@ public class ChatRoomServer {
 				this.dos = new DataOutputStream(this.incomingSocket.getOutputStream());
 				
 			} catch (IOException e) {
+				System.out.println("loi tai thread");
 				System.out.println(e.getMessage());
 			}
 		}
@@ -51,6 +56,7 @@ public class ChatRoomServer {
 				}
 				this.name = message;
 				this.crsv.list.add(this);
+				updateListJoined();
 				while (true){
 					xauNhan = dis.readUTF();
 					dinhDanh = xauNhan.substring(0, xauNhan.indexOf(","));
@@ -59,15 +65,38 @@ public class ChatRoomServer {
 						for (int i=0; i < this.crsv.list.size(); i++){
 							ThreadHandler temp = this.crsv.list.get(i);
 							if (temp!=this){
-								temp.dos.writeUTF("Msg"+this.name+">"+message);
+								temp.dos.writeUTF("Msg,"+this.name+">"+message);
 							}
 						}
+					}
+					else{
+						
+						this.crsv.list.remove(this);
+						incomingSocket.close();
 					}
 				}
 				
 				
 			} catch (Exception e){
-				System.out.println(e.getMessage());
+				this.crsv.list.remove(this);
+				updateListJoined();
+			}
+		}
+		
+		private void updateListJoined(){
+			String listJoiner="";
+			for (int i = 0; i < this.crsv.list.size(); i++){
+				ThreadHandler temp = this.crsv.list.get(i);
+				listJoiner += temp.name + "\n";
+			}
+			for (int i = 0; i < this.crsv.list.size(); i++){
+				ThreadHandler temp = this.crsv.list.get(i);
+				try {
+					temp.dos.writeUTF("Joined," + listJoiner);
+				} catch (IOException e) {
+					System.out.println("loi tai update list");
+					System.out.println(e.getMessage());
+				}
 			}
 		}
 		

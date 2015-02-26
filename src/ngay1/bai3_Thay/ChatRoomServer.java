@@ -1,4 +1,4 @@
-package ngay1.bai3;
+package ngay1.bai3_Thay;
 
 
 import java.io.DataInputStream;
@@ -24,7 +24,7 @@ public class ChatRoomServer {
 				new ThreadedHandler(this,theConnection).start();
 			}
 		}catch (IOException e) {
-		System.err.println(e);
+		System.out.println(e);
 		}
 	}
 	

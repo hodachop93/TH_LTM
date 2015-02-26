@@ -1,4 +1,4 @@
-package ngay1.bai3;
+package ngay1.bai3_Thay;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataInputStream;
