@@ -15,6 +15,7 @@ public class LoginFrame extends JFrame implements ActionListener{
 		setLayout(new GridLayout(3,2));
 		JLabel lblName = new JLabel("Name: ");
 		add(lblName);
+		int i=0;
 		txtName = new JTextField();
 		add(txtName);
 		txtName.addActionListener(this);
