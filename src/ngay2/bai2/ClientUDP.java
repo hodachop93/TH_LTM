@@ -13,7 +13,7 @@ public class ClientUDP{
 		InetAddress IPAddress = InetAddress.getByName("localhost");
 		byte[] sendData = new byte[1024];
 		byte[] receiveData = new byte[1024];
-
+		
 		String sentence = input.nextLine();
 		sendData = sentence.getBytes();
 		DatagramPacket sendPacket = new DatagramPacket(sendData,
@@ -26,5 +26,6 @@ public class ClientUDP{
 		clientSocket.receive(receivePacket);
 		String receivedSentence = new String(receivePacket.getData()).substring(0, receivePacket.getLength());
 		System.out.println(receivedSentence);
+		
 	}
 }
